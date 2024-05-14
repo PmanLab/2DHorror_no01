@@ -6250,7 +6250,7 @@ MonoBehaviour:
   activePanel: {fileID: 423807976}
   panel: {fileID: 423807978}
   text: {fileID: 564820648}
-  duration: 10
+  duration: 1000
 --- !u!1 &1586251242
 GameObject:
   m_ObjectHideFlags: 0
