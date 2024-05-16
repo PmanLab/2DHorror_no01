@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
+    [SerializeField] GameObject gameOverPanel;
+    
+
     //ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
     public void LoadScene(string str)
     {
@@ -12,4 +16,8 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(str);
     }
 
+    public void RetryStage()
+    {
+        gameOverPanel.SetActive(false);
+    }
 }
