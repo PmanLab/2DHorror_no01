@@ -6,18 +6,11 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    [SerializeField] GameObject gameOverPanel;
-    
 
     //ボタンが押されたときに呼び出される関数
     public void LoadScene(string str)
     {
         Time.timeScale = 1; // ゲームの時間を通常に戻す
         SceneManager.LoadScene(str);
-    }
-
-    public void RetryStage()
-    {
-        gameOverPanel.SetActive(false);
     }
 }
