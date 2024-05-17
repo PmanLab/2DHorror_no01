@@ -3484,7 +3484,7 @@ MonoBehaviour:
   bgmSlider: {fileID: 860650066}
   seSlider: {fileID: 1271133745}
   seGameOver: {fileID: 8300000, guid: 2174cc8e1b9851b4b8ccf05ac28fb8f4, type: 3}
-  seTiming: 0.4
+  seTiming: 0.1
 --- !u!82 &703465885
 AudioSource:
   m_ObjectHideFlags: 0

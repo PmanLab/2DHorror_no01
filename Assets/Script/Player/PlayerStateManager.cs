@@ -26,6 +26,9 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Start()
     {
+        // ƒvƒŒƒCƒ„[‚Ì‰Šúó‘Ô
+        ePlayerState = PLAYERSTATE.NOMAL;
+
         //SpriteRendererŠi”[
         sp = GetComponent<SpriteRenderer>();
         //BoxCollider2DŠi”[

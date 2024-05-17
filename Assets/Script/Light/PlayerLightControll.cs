@@ -6,8 +6,8 @@ using UnityEngine.Rendering.Universal;  //Light2D用
 
 public class PlayerLightControll : MonoBehaviour
 {
-    [Header("intensityの変更時間")] [SerializeField] float intensityAnimTimeSpeed = 10.0f;
-    [Header("OuterRadiusの変更時間")] [SerializeField] float OuterRadiusAnimTimeSpeed = 10.0f;
+    [Header("intensityの減少時間")] [SerializeField] float intensityAnimTimeSpeed = 10.0f;
+    [Header("OuterRadiusの減少時間")] [SerializeField] float OuterRadiusAnimTimeSpeed = 10.0f;
 
     Light2D light2d;                    // ライト情報格納用
     Tween intensityTween;               // 強さのween
@@ -22,6 +22,8 @@ public class PlayerLightControll : MonoBehaviour
 
     void Update()
     {
+
+        // メニュー画面表示入力 検知関数
         ToggleIntensityTween();
 
         if (light2d.intensity <= 0.0f)
