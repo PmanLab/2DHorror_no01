@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;  //Light2D用
 public class PlayerLightControll : MonoBehaviour
 {
     [Header("intensityの初期値")] [SerializeField] float intensityValue = 2.5f;
-    [Header("OuterRadadiusの初期値")] [SerializeField] float outerradiusVlue = 5.0f;
+    [Header("OuterRadadiusの初期値")] [SerializeField] float outerradiusVlue = 10.0f;
     [Header("intensityの減少時間")] [SerializeField] float intensityAnimTimeSpeed = 10.0f;
     [Header("OuterRadiusの減少時間")] [SerializeField] float OuterRadiusAnimTimeSpeed = 10.0f;
     [Header("減少するライト量")] [SerializeField] float decreaseIntensity = 0.25f;
@@ -50,6 +50,8 @@ public class PlayerLightControll : MonoBehaviour
         if (light2d.intensity <= 0.0f)
         {// ライトの光が残っていない場合はtrue
             isGameOver = true;
+            //light2d.intensity = 0.0f;
+            //light2d.pointLightOuterRadius = 0.0f;
         }
         else
         {// ライトの光が残っている場合はfalse
@@ -101,6 +103,19 @@ public class PlayerLightControll : MonoBehaviour
             1.0f,
             OuterRadiusAnimTimeSpeed
             );
+        
+        //--- ライト残量がなくなった時 ---
+        if (light2d.intensity <= 0.0f)
+        {
+            // Tween強制終了
+            intensityTween?.Kill();
+            pointLightOuterRadius?.Kill();
+
+            // 補正
+            light2d.intensity = 0.0f;
+            light2d.pointLightOuterRadius = 1.0f;
+        }
+
     }
 
     void ForceIntensityDecrease()
