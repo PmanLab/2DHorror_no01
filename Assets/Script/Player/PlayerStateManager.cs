@@ -12,7 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     SpriteRenderer sp;
     //コライダーをオンオフするためのCollider2D
     //BoxCollider2D bc2d;
-    Collider2D physicsCollider;
+    Collider2D physicsCollider;  
 
     //プレイヤーの状態用列挙型（ノーマル、ダメージ、無敵の3種類）
     public enum PLAYERSTATE
@@ -50,11 +50,11 @@ public class PlayerStateManager : MonoBehaviour
         }
         //コルーチンを開始
         ePlayerState = PLAYERSTATE.DAMAGED;      //ダメージ受けている
-        StartCoroutine(_hit());
+        StartCoroutine(EnemyHit());
     }
 
     //点滅させる処理
-    IEnumerator _hit()
+    IEnumerator EnemyHit()
     {
         physicsCollider.enabled = false;
         sp.color = Color.black;

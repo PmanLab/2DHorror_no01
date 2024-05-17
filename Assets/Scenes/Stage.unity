@@ -6346,7 +6346,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5
+  m_PointLightOuterRadius: 6
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -6369,8 +6369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a678324df7d4554c9a4347813448a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensityAnimTimeSpeed: 2
-  OuterRadiusAnimTimeSpeed: 2
+  intensityValue: 2.5
+  outerradiusVlue: 5
+  intensityAnimTimeSpeed: 30
+  OuterRadiusAnimTimeSpeed: 30
+  decreaseIntensity: 0.5
 --- !u!114 &1569941660
 MonoBehaviour:
   m_ObjectHideFlags: 0
