@@ -7,13 +7,20 @@ using UnityEngine.Audio;
 public class AudioConfig : MonoBehaviour
 {
     //=== SerializeField ===
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] AudioSource bgmAudioSource;
-    [SerializeField] AudioSource seAudioSource;
-    [SerializeField] Slider masterAudioSlider;
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider seSlider;
+    //--- オーディオソースとミキサ ---
+    [Header("オーディオミキサー")][SerializeField] AudioMixer audioMixer;
+    [Header("オーディオソース(BGM)")][SerializeField] AudioSource bgmAudioSource;
+    [Header("オーディオソース(SE)")][SerializeField] AudioSource seAudioSource;
+    
+    //--- スライダ ---
+    [Header("オーディオスライダの指定(Master)")][SerializeField] Slider masterAudioSlider;
+    [Header("オーディオスライダの指定(BGM)")][SerializeField] Slider bgmSlider;
+    [Header("オーディオスライダの指定(SE)")][SerializeField] Slider seSlider;
     //[SerializeField] float pauseVolumeReduction;  // ポーズ中のマスターボリュームの減少量
+
+    //--- SEリスト ---
+    [Header("Gameover(SE)")][SerializeField] AudioClip seGameOver;
+    [Header("SEを流すα値")][SerializeField] float seTiming = 0.5f;
 
     public const string MasterVolumeKey = "MasterVolume";
     public const string BGMVolumeKey = "BGMVolume";
@@ -22,6 +29,9 @@ public class AudioConfig : MonoBehaviour
           
     private void Start()
     {
+        // 初期化
+        bgmAudioSource.UnPause();
+
         // スライダーの初期値を設定
         masterAudioSlider.value = PlayerPrefs.GetFloat(MasterVolumeKey, 1.0f);
         bgmSlider.value = PlayerPrefs.GetFloat(BGMVolumeKey, 1.0f);
@@ -124,6 +134,17 @@ public class AudioConfig : MonoBehaviour
     //--- 更新処理 ---
     void Update()
     {
+
+        if(PlayerLightControll.isGameOver)
+        {// ゲームオーバーになったらBGMを止める
+            bgmAudioSource.Pause();
+        }
+        if (FadePanel.textColor.a >= seTiming)
+        {// ゲームオーバー時に文字が現れ始めたら一度音を鳴らす
+            seAudioSource.PlayOneShot(seGameOver);
+        }
+
+
         /*if(GamePause.isPaused)
         {// ポーズメニュー中の場合
             // ポーズ中はMastervolumeを少しさげる

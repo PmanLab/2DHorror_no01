@@ -12,7 +12,7 @@ public class FadePanel : MonoBehaviour
     [Header("フェード時間value")][SerializeField] float duration = 1000.0f;
 
     Color panelColor;
-    Color textColor;
+    public static Color textColor;
     Color buttonTextColor;
 
     const float FadeInAlpha = 1.0f;
