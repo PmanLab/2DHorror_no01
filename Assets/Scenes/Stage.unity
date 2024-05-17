@@ -6370,7 +6370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensityValue: 2.5
-  outerradiusVlue: 10
+  outerradiusVlue: 5
   intensityAnimTimeSpeed: 30
   OuterRadiusAnimTimeSpeed: 30
   decreaseIntensity: 0.5
