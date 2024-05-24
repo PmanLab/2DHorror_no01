@@ -19,8 +19,6 @@ public class EnemyAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("きょり間：" + fDis);
-
         // プレイヤーと敵の座標を格納
         fPlayerPos = Player.transform.position;
         fEnemyPos = Enemy.transform.position;

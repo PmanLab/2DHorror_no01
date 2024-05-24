@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] Transform Camera;
 
-
-
     //=== XVˆ— ===
     void Update()
     {

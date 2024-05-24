@@ -9,7 +9,7 @@ public class LightGauge : MonoBehaviour
 
     //=== SerializeField ===
     [SerializeField] public Light2D light2d;   // ƒ‰ƒCƒgî•ñŠi”[—p
-    public Image lightGaugeUI;                   // ƒQ[ƒWUI‚ÌRectTransform
+    public Image lightGaugeUI;                 // ƒQ[ƒWUI‚ÌRectTransform
 
     //=== •Ï” ===
     private float intensityRatio;      // intensity‚Ì•Ï‰»—ÊŠi”[—p
