@@ -12,16 +12,17 @@ public class PlayerLightControll : MonoBehaviour
     [Header("OuterRadiusの減少時間")] [SerializeField] float OuterRadiusAnimTimeSpeed = 10.0f;
     [Header("減少するライト量")] [SerializeField] float decreaseIntensity = 0.25f;
 
-    public static Light2D light2d;      // ライト情報格納用
+    public Light2D light2d;             // ライト情報格納用
     Tween intensityTween;               // 強さのween
     Tween pointLightOuterRadius;        // RadiusのOuter
 
     public static bool isGameOver;      // ゲームオーバー検知用 (ライトの光があるかどうか)
     bool isDamage = false;
-    public static bool LightOn  = false;
+    public bool LightOn  = false;
 
     void Start()
     {
+        Debug.Log(LightOn);
         // 初期化
         light2d = GetComponent<Light2D>();  // ライト情報を取得
         light2d.intensity = intensityValue;
@@ -29,10 +30,7 @@ public class PlayerLightControll : MonoBehaviour
     }
 
     void Update()
-    {
-
-        Debug.Log("らいとの初期化" + LightOn);
-
+    { 
         //--- 攻撃を受けたら強制的に処理 ---
         if (PlayerStateManager.ePlayerState == PlayerStateManager.PLAYERSTATE.DAMAGED)
         {

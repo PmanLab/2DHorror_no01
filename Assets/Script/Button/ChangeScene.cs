@@ -28,12 +28,7 @@ public class ChangeScene : MonoBehaviour
         HpManager.fPlayerHp = 100.0f;       // 不使用
 
         //--- ライト ---
-        if (PlayerLightControll.LightOn)
-        {
-            PlayerLightControll.light2d.intensity = 2.5f;
-            PlayerLightControll.light2d.pointLightOuterRadius = 10.0f;
-            PlayerLightControll.isGameOver = false;
-        }
+        PlayerLightControll.isGameOver = false;
 
         //--- ポーズ画面 ---
         GamePause.isPaused = false;
