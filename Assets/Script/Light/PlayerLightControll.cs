@@ -17,16 +17,20 @@ public class PlayerLightControll : MonoBehaviour
     Tween pointLightOuterRadius;        // RadiusのOuter
 
     public static bool isGameOver;      // ゲームオーバー検知用 (ライトの光があるかどうか)
-    bool isDamage = false;
-    public bool LightOn  = false;
+    private bool isDamage = false;
+    private bool LightOn  = false;
 
     void Start()
     {
-        Debug.Log(LightOn);
+
         // 初期化
         light2d = GetComponent<Light2D>();  // ライト情報を取得
         light2d.intensity = intensityValue;
         light2d.pointLightOuterRadius = outerradiusVlue;
+
+        // debugログ 
+        Debug.Log("らいとのIntensityの初期値：" + light2d.intensity);
+        Debug.Log("らいとのOuterRadius初期値：" + light2d.pointLightOuterRadius);
     }
 
     void Update()

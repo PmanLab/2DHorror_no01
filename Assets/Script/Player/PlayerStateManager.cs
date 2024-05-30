@@ -51,6 +51,7 @@ public class PlayerStateManager : MonoBehaviour
                 GetKeyPanel.SetActive(false);
                 isGetKey = true;
                 Time.timeScale = 1;     // ゲーム内時間始動
+                Debug.Log("鍵を入手情報" + isGetKey);
             }
         }
     }
@@ -59,9 +60,9 @@ public class PlayerStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //--- ゴールアイテムを入手時 処理 ---
-        if (collision.gameObject.name == "Item_01")
+        if (collision.gameObject.name == "Key")
         {
-            Debug.Log("鍵を入手した" + isGetKey);
+            Debug.Log("鍵を入手した");
             GetKeyPanel.SetActive(true);
             Time.timeScale = 0;     // ゲーム内時間停止
         }
