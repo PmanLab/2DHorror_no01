@@ -10,11 +10,14 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] float speed, flashInterval;    //移動スピードと点滅の間隔
     [SerializeField] int loopCount;                 //点滅させるときのループカウント
     [SerializeField] GameObject GetKeyPanel;        // 鍵を入手したときのPanel
+    [SerializeField] GameObject Doortext;        // ドアテキスト
 
     //--- 変数 ---
     SpriteRenderer sp;                              //点滅させるためのSpriteRenderer
     Collider2D physicsCollider;                     //コライダーをオンオフするためのCollider2D
     public static bool isGetKey = false;            // 脱出用の鍵 取得情報格納用
+    int nCount = 1;
+
 
     //--- 列挙 ---
     //プレイヤーの状態用列挙型（ノーマル、ダメージ、無敵の3種類）
@@ -22,7 +25,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         NOMAL,
         DAMAGED,
-        MUTEKI
+        MUTEKI,
+        MAX
     }
 
     //--- STATE型の変数 ---
@@ -44,6 +48,8 @@ public class PlayerStateManager : MonoBehaviour
     //=== 更新処理 ===
     void Update()
     {
+        Debug.Log("かうんと：" + nCount);
+
         if (GetKeyPanel.activeSelf == true)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -51,24 +57,43 @@ public class PlayerStateManager : MonoBehaviour
                 GetKeyPanel.SetActive(false);
                 isGetKey = true;
                 Time.timeScale = 1;     // ゲーム内時間始動
-                Debug.Log("鍵を入手情報" + isGetKey);
+                Debug.Log("鍵を入手" + isGetKey);
             }
         }
+
+        if (Doortext.activeSelf == true ) { nCount += 1; }
+        if (nCount > 180) { Doortext.SetActive(true); nCount = 0; }
+        if (nCount == 0) { Doortext.SetActive(false); }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        //--- ゴールアイテムを入手時 処理 ---
-        if (collision.gameObject.name == "Key")
+        if(collider.gameObject.tag == "Goal")
         {
-            Debug.Log("鍵を入手した");
+            if (isGetKey == true)
+            {
+                Debug.Log("鍵を持っている");
+                Time.timeScale = 0;
+                SceneManager.LoadScene("GameClear");
+            }
+            else
+            {
+
+                Doortext.SetActive(true);  // 警告テキスト描画
+
+                Debug.Log("鍵を持っていない");
+            }
+        }
+
+        //--- ゴールアイテムを入手時 処理 ---
+        if (collider.gameObject.name == "Key")
+        {
             GetKeyPanel.SetActive(true);
             Time.timeScale = 0;     // ゲーム内時間停止
         }
 
         //--- 敵に当たったときの処理 ---
-        if (collision.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == "Enemy")
         {
             //通常状態じゃなければ
             if (ePlayerState != PLAYERSTATE.NOMAL)
@@ -79,6 +104,8 @@ public class PlayerStateManager : MonoBehaviour
             ePlayerState = PLAYERSTATE.DAMAGED;      //ダメージ受けている
             StartCoroutine(EnemyHit());
         }
+
+
     }
 
     //点滅させる処理
@@ -104,4 +131,6 @@ public class PlayerStateManager : MonoBehaviour
         sp.color = Color.white;
 
     }
+
+
 }
