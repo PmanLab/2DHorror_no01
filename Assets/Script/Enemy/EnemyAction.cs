@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyAction : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
-    [SerializeField] GameObject Enemy;
+    GameObject Player;
+    public GameObject Enemy;
 
     private float fDis;             // 距離
     private Vector2 fPlayerPos;     //プレイヤー座標
@@ -13,7 +14,7 @@ public class EnemyAction : MonoBehaviour
 
     void Start()
     {
-        
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

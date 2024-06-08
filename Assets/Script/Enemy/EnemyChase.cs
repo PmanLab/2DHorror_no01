@@ -7,7 +7,7 @@ using DG.Tweening;
 public class EnemyMove : MonoBehaviour
 {
     Transform playerTr; // プレイヤーのTransform
-    [SerializeField] float speed = 2; // 敵の動くスピード
+    [SerializeField] float speed = 0.25f; // 敵の動くスピード
 
     int nRand = 0;
     int nCount = 0;
@@ -15,7 +15,7 @@ public class EnemyMove : MonoBehaviour
     private void Start()
     {
         // プレイヤーのTransformを取得（プレイヤーのタグをPlayerに設定必要）
-        playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTr = GameObject.Find("Player").transform;
     }
 
     private void Update()
